@@ -1,0 +1,33 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 5vh;
+    top: 0;
+    width: 100%;
+    background: rgb(82, 82, 82);
+    padding: 1% 0 1% 0;
+}
+
+.header-logo{
+    background: url(../imagens/logo-instalura.svg) no-repeat left;
+    background-size: 30px;
+    color: #fff;
+    padding-left: 1.5em;
+    margin-left: 2%;
+    font-size: 1.5em;
+    width: 40%;
+}
+
+.header-search-field {
+    height: 1.4em;
+    width: 95%;
+}
+
+@media only screen and (min-width: 768px) {
+    .header {
+        height: 4vh;
+    }
+
+}

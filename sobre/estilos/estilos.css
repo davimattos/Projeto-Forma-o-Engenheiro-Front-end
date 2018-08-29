@@ -1,0 +1,16 @@
+html {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.30;
+
+}
+  
+body {
+    background: #fafafa;
+    position: relative;
+    height: 100%;
+}
+  
+.container {
+    padding: 0 2%;
+}

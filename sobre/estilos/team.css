@@ -1,0 +1,135 @@
+.team-panel {
+    background-color: rgb(8, 2, 54);
+    padding-top: 1%;
+    top: 0;
+    padding-bottom: 1%;
+    font-weight: bold;
+} 
+
+.team-concept {
+    padding: 0 4%;
+}
+
+.team-concept h2 {
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+    padding-bottom: 4em;
+}
+
+.team-photo {
+    position: relative;
+}
+
+.team-photo img {
+    position: absolute;
+    height: 70px;
+    width: 80%;
+    top: 3em;
+}
+
+.team-about i {
+    color: rgb(102, 135, 207);  
+}
+
+.team-about a {
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.team-about a:hover { 
+    font-size: 2em;
+}
+
+.team-panel p {
+    font-size: 1em;
+    color: rgb(102, 135, 207);
+}
+
+.team-panel a{
+    align-self: flex-start;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+
+.news-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    border: 1px solid rgb(102, 135, 207);
+    margin: 2%;
+}
+
+.news-image figure {
+    margin: 5% 3% 5% 3%;
+}
+
+.news-image img{
+    width: 100%;
+}
+
+.news-image h2{
+    color: #fff;
+    text-align: center;
+
+}
+
+.news-image:hover {
+    border: 2px solid #fff;
+}
+
+@media only screen and (min-width: 768px) {
+    .team-about {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 95%;
+    }
+
+    .team-photo {
+        width: 45%;
+    }
+
+    .team-concept {
+        width: 70%;
+    }
+
+    .team-concept p{
+        margin: 1em;
+    }
+
+    .team-concept h2 {
+        padding-bottom: 0;
+        margin: 3%;
+    }
+    
+    .team-concept a {
+        width: 60%;
+        margin-left: 3%;
+    }
+
+    .team-photo img {
+        height: 70%;
+        width: 90%;
+    }
+
+ 
+    .news {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    .news-image {
+        width: 31%;
+        margin: 3% 0 1% 0;
+    }
+
+    .news-image:nth-child(odd) {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+
+}
