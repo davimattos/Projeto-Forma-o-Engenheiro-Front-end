@@ -13,6 +13,11 @@ class FotoAtualizacoes extends Component {
       this.props.comenta(this.props.foto.id,this.comentario.value);
     }
 
+    apaga(event){
+      event.preventDefault();
+      this.props.apaga(this.props.foto.id);
+    }
+
     render(){
         return (
             <section className="fotoAtualizacoes">
@@ -76,6 +81,7 @@ class FotoHeader extends Component {
                   </Link>  
                 </figcaption>
               </figure>
+                <input type="submit" value="apaga" className="fotoAtualizacoes-form-submit"/>
               <time className="foto-data">{this.props.foto.horario}</time>
             </header>            
         );

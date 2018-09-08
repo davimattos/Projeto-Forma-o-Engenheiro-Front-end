@@ -5,7 +5,9 @@ export default class Signup extends Component {
 
     constructor(props){
         super(props);        
-        this.state = {msg:this.props.location.query.msg};
+        this.state = {
+            msg:[this.props.location.query.msg]
+        };
     }
     //https://avatars3.githubusercontent.com/u/39676166?s=400&v=4
     envia(event){
@@ -19,12 +21,13 @@ export default class Signup extends Component {
                 'Auth-token' : ''
             })
         };
-        console.log(this.senha.value)
-            if(this.senha.value === this.confirma.value) {
+        console.log(this.state.msg)
+        if(this.senha.value === this.confirma.value) {
+            if(this.login.value !== this.senha.value) {
                 fetch('http://localhost:8080/usuarios',requestInfo)
                     .then(response => {
                             if(response.ok) {
-                                browserHistory.push('/timeline');
+                                browserHistory.push('login');
                             }
                         return response.json();
                     })
@@ -37,9 +40,12 @@ export default class Signup extends Component {
                         this.setState({msg:error.message});
                     });
             } else {
-                this.setState({msg:"A senha e confirmação não batem"});
+                this.setState({msg:"Senha igual ao username"});
             }
+        } else {
+            this.setState({msg:"Senha não confere"});
         }
+    }
 
     render(){
         return (

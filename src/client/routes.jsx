@@ -23,7 +23,8 @@ function verificaAutenticacao(nextState,replace) {
 export const routes = (
   <Route path="/">
 	  <IndexRoute component={Login}/>
-		<Route path="/logout" component={Logout}/>	    	    	
+		<Route path="/logout" component={Logout}/>
+		<Route path="/login" component={Login}/>
 		<Route path="/signup" component={Signup}/>	    	    	
 	  <Route path="/timeline(/:login)" component={Home} onEnter={verificaAutenticacao}/>  
   </Route>

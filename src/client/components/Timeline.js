@@ -61,10 +61,13 @@ const mapDispatchToProps = dispatch => {
       dispatch(TimelineApi.like(fotoId));
     },
     comenta : (fotoId,textoComentario) => {
-      dispatch(TimelineApi.comenta(fotoId,textoComentario))
+      dispatch(TimelineApi.comenta(fotoId,textoComentario));
     },
     lista : (urlPerfil) => {
       dispatch(TimelineApi.lista(urlPerfil));      
+    },
+    apaga : (fotoId) => {
+      dispatch(TimelineApi.apaga(fotoId));
     }
 
   }

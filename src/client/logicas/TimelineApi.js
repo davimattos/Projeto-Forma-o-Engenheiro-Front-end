@@ -72,4 +72,18 @@ export default class TimelineApi {
       }
     }
 
+    static apaga(fotoId) {
+      return dispatch => {
+        fetch(`http://localhost:8080/api/fotos/${fotoId}`)
+          .then(response => {
+            if(reponse.ok) {
+              dispatch(notifica('post apagado'));
+            } else {
+              dispatch(notifica('post não pode ser apagado, verifique sua conexão!'));
+            }
+            return response.json();
+          })
+      }
+    }
+
 }
