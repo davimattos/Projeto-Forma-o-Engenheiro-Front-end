@@ -3,13 +3,15 @@ import Header from './Header';
 import Timeline from './Timeline';
 import PropTypes from 'prop-types';
 
+
 class Home extends Component {
-  render() {    
+  
+  render() {
     return (
     <div id="root">
       <div className="main">
         <Header store={this.context.store}/>
-        <Timeline login={this.props.params.login}/>
+        <Timeline login={this.props.params.login} />
       </div>
     </div>
     );

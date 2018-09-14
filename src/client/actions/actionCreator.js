@@ -17,3 +17,8 @@ export function notifica(msg){
 export function apaga(fotoId) {
     return {type: 'APAGA', fotoId};
 }
+
+export function signup (valores){
+    newValue: 'Atualizado'
+    return {type: 'SIGNUP', valores}
+}

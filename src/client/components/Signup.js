@@ -1,66 +1,35 @@
 import React, { Component } from 'react';
-import {browserHistory} from  'react-router';
+import { connect } from 'react-redux';
+import SignupApi from '../logicas/SignupApi';
 
-export default class Signup extends Component {
-
-    constructor(props){
-        super(props);        
-        this.state = {
-            msg:[this.props.location.query.msg]
-        };
+class Signup extends Component {
+    
+    constructor() {
+        super();
+        this.state = {msg:''};
     }
+    
     //https://avatars3.githubusercontent.com/u/39676166?s=400&v=4
-    envia(event){
+    
+    signup(event){
         event.preventDefault();
-
-        const requestInfo = {
-            method:'POST',
-            body:JSON.stringify({login:this.login.value,senha:this.senha.value,urlPerfil:this.urlPerfil.value}),
-            headers:new Headers({
-                'Content-type' : 'application/json',
-                'Auth-token' : ''
-            })
-        };
-        console.log(this.state.msg)
-        if(this.senha.value === this.confirma.value) {
-            if(this.login.value !== this.senha.value) {
-                fetch('http://localhost:8080/usuarios',requestInfo)
-                    .then(response => {
-                            if(response.ok) {
-                                browserHistory.push('login');
-                            }
-                        return response.json();
-                    })
-                    .then(data => {
-                        data.errors.map( erro => {
-                            throw new Error(erro.defaultMessage)
-                        })
-                    })
-                    .catch(error => {
-                        this.setState({msg:error.message});
-                    });
-            } else {
-                this.setState({msg:"Senha igual ao username"});
-            }
-        } else {
-            this.setState({msg:"Senha não confere"});
-        }
+        this.props.signup({login: this.login.value, senha: this.senha.value, confirma: this.confirma.value, urlPerfil: this.urlPerfil.value});        
     }
-
+    
     render(){
         return (
             <div className="signup-box">
                 <h1>Signup</h1>
                 <span>{this.state.msg}</span>
-                <form onSubmit={this.envia.bind(this)}>
+                <form onSubmit={this.signup.bind(this)}>
                     <p>Login</p>
-                    <input type="text" ref={(input) => this.login = input} required/>
+                    <input type="text"  ref={(input) => this.login = input} required/>
                     <p>Senha</p>
-                    <input type="password" ref={(input) => this.senha = input} required/>
+                    <input type="password"  ref={(input) => this.senha = input} required/>
                     <p>Confirmação</p>
-                    <input type="password" ref={(input) => this.confirma = input} required/>
+                    <input type="password"  ref={(input) => this.confirma = input} required/>
                     <p>Url do Perfil</p>
-                    <input type="url" pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" placeholder="http://endereco.com" ref={(input) => this.urlPerfil = input}/>
+                    <input type="url"  pattern="^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" placeholder="http://endereco.com" ref={(input) => this.urlPerfil = input}/>
                     <p></p>
                     <input type="submit" value="signup"/>
                 </form>
@@ -68,3 +37,17 @@ export default class Signup extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {valores : state.valores}
+  };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        signup : (valores) => {
+            dispatch(SignupApi.signup(valores));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

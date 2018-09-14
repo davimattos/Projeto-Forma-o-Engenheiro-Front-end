@@ -15,9 +15,9 @@ class Timeline extends Component {
       let urlPerfil;
 
       if(this.login === undefined) {
-        urlPerfil = `https://instalura-api.herokuapp.com//api/fotos?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`;
+        urlPerfil = `http://localhost:8080/api/fotos?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`;
       } else {
-        urlPerfil = `https://instalura-api.herokuapp.com//api/fotos/${this.login}`;
+        urlPerfil = `http://localhost:808/api/fotos/${this.login}`;
       } 
 
       this.props.lista(urlPerfil);                  
@@ -32,9 +32,9 @@ class Timeline extends Component {
         this.login = nextProps.login;
         this.carregaFotos();
       }
-    }
+    } 
 
-    render(){        
+    render(){
         return (
         <div className="fotos container">
         <ReactCSSTransitionGroup
@@ -42,7 +42,7 @@ class Timeline extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}>
             {
-              this.props.fotos.map(foto => <FotoItem key={foto.id} foto={foto} like={this.props.like} comenta={this.props.comenta}/>)
+              this.props.fotos.map(foto => <FotoItem key={foto.id} foto={foto} like={this.props.like} comenta={this.props.comenta} apaga={this.props.apaga}/>)
             }               
         </ReactCSSTransitionGroup>        
  
@@ -69,7 +69,6 @@ const mapDispatchToProps = dispatch => {
     apaga : (fotoId) => {
       dispatch(TimelineApi.apaga(fotoId));
     }
-
   }
 }
 

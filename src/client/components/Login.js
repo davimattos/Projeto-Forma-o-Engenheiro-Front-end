@@ -19,9 +19,7 @@ export default class Login extends Component {
             })
         };
 
-        console.log(requestInfo)
-
-        fetch('https://instalura-api.herokuapp.com//api/public/login',requestInfo)
+        fetch('http://localhost:8080/api/public/login',requestInfo)
             .then(response => {
                 if(response.ok) {
                     return response.text();

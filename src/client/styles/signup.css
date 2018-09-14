@@ -1,11 +1,10 @@
 :global .signup-box {
     position : absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: white;
-    padding: 0 .5em .5em .5em;
-    font-size: 1.5em;
+    padding: 1em;
 }
 
 :global .signup-box input {
@@ -14,9 +13,8 @@
 
 :global .signup-box input[type='submit'] {
     background: #3897f0;
-    border-color: #3897f0;
-    color: white;   
-    padding: .5em 1em .5em 1em;
+    color: white;
+    padding: .3em;
 }
 
 :global .signup-box span{
@@ -25,28 +23,6 @@
 
 @media (min-width: 768px) {
     :global .signup-box {
-        position : absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        background: white;
-        padding: 0 .5em .5em .5em;
-        font-size: 2em;
-        height: 90%;
-    }
-    
-    :global .signup-box input {
-        border: 1px solid #dbdbdb;
-    }
-    
-    :global .signup-box input[type='submit'] {
-        background: #3897f0;
-        border-color: #3897f0;
-        color: white;   
-        padding: .5em 1em .5em 1em;
-    }
-    
-    :global .signup-box span{
-        color: red;
+        font-size: 1.3em;
     }
 }

@@ -179,6 +179,7 @@
 :global .fotoAtualizacoes {
   display: flex;
   padding: 0 1em 1em 1em;
+  
 }
 
 :global .fotoAtualizacoes-like {
@@ -206,13 +207,15 @@
 :global .fotoAtualizacoes-form {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-content: space-between;
 }
 
 :global .fotoAtualizacoes-form-campo {
   border: 0;
   outline: 0;
   width: 60%;
+  margin-right: 2em;
 }
 
 :global .fotoAtualizacoes-form-submit {

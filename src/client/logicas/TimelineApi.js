@@ -1,4 +1,4 @@
-import {listagem,comentario,like,notifica} from '../actions/actionCreator';
+import { listagem, comentario, like, notifica, apaga} from '../actions/actionCreator';
 import 'isomorphic-fetch';
 
 export default class TimelineApi {
@@ -23,7 +23,7 @@ export default class TimelineApi {
           })
         };
 
-        fetch(`https://instalura-api.herokuapp.com//api/fotos/${fotoId}/comment?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`, requestInfo)
+        fetch(`http://localhost:8080/api/fotos/${fotoId}/comment?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`, requestInfo)
           .then(response => {
             if(response.ok){
               return response.json();
@@ -40,7 +40,7 @@ export default class TimelineApi {
 
     static like(fotoId){
       return dispatch => {
-        fetch(`https://instalura-api.herokuapp.com//api/fotos/${fotoId}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`,{method:'POST'})
+        fetch(`http://localhost:8080/api/fotos/${fotoId}/like?X-AUTH-TOKEN=${localStorage.getItem('auth-token')}`,{method:'POST'})
           .then(response => {
             if(response.ok) {
               return response.json();
@@ -57,7 +57,7 @@ export default class TimelineApi {
 
     static pesquisa(login){
       return dispatch => {
-        fetch(`https://instalura-api.herokuapp.com//api/fotos/${login}`)
+        fetch(`http://localhost:8080/api/fotos/${login}`)
           .then(response => response.json())
           .then(fotos => {
             if(fotos.length === 0){
@@ -74,16 +74,24 @@ export default class TimelineApi {
 
     static apaga(fotoId) {
       return dispatch => {
-        fetch(`http://localhost:8080/api/fotos/${fotoId}`)
+        const requestInfo = {
+          method:'DELETE',
+          body:JSON.stringify({fotoId}),
+          headers: new Headers({
+            'Content-type':'application/json'
+          })
+        };
+
+        fetch(`http://localhost:8080/api/fotos/${fotoId}`, requestInfo)
           .then(response => {
-            if(reponse.ok) {
-              dispatch(notifica('post apagado'));
+            if(response.ok) {
+              dispatch(notifica('Apagando postagem...'));
             } else {
-              dispatch(notifica('post não pode ser apagado, verifique sua conexão!'));
+              dispatch(notifica('postagem não pode ser apagada, verifique sua conexão!'));
             }
-            return response.json();
+            dispatch(apaga(fotoId));
+            return fotoId;
           })
       }
     }
-
 }

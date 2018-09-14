@@ -13,8 +13,7 @@ class FotoAtualizacoes extends Component {
       this.props.comenta(this.props.foto.id,this.comentario.value);
     }
 
-    apaga(event){
-      event.preventDefault();
+    apaga(){
       this.props.apaga(this.props.foto.id);
     }
 
@@ -22,11 +21,15 @@ class FotoAtualizacoes extends Component {
         return (
             <section className="fotoAtualizacoes">
               <a onClick={this.like.bind(this)} className={this.props.foto.likeada ? 'fotoAtualizacoes-like-ativo' : 'fotoAtualizacoes-like'}>Likar</a>
-              <form className="fotoAtualizacoes-form" onSubmit={this.comenta.bind(this)}>
-                <input type="text" placeholder="Adicione um comentário..." className="fotoAtualizacoes-form-campo" ref={input => this.comentario = input}/>
-                <input type="submit" value="Comentar!" className="fotoAtualizacoes-form-submit"/>
-              </form>
-
+              <div className="fotoAtualizacoes-form">
+                <form onSubmit={this.comenta.bind(this)}>
+                  <input type="text" placeholder="Adicione um comentário..." className="fotoAtualizacoes-form-campo" ref={input => this.comentario = input}/>
+                  <input type="submit" value="Comentar!" className="fotoAtualizacoes-form-submit"/>
+                </form>
+                <form onSubmit={this.apaga.bind(this)}>
+                  <input type="submit" value="Apagar!" className="fotoAtualizacoes-form-submit"/>
+                </form>
+              </div>
             </section>            
         );
     }
@@ -81,7 +84,6 @@ class FotoHeader extends Component {
                   </Link>  
                 </figcaption>
               </figure>
-                <input type="submit" value="apaga" className="fotoAtualizacoes-form-submit"/>
               <time className="foto-data">{this.props.foto.horario}</time>
             </header>            
         );

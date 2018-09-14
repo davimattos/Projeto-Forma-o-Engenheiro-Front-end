@@ -15,7 +15,6 @@ import "./styles/login.css";
 import "./styles/signup.css";
 import "./styles/timeline.css";
 
-
 import rootReducer from "./reducers";
 
 // Add the client app start up code to a function as window.webappStart.
