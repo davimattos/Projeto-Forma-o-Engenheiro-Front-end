@@ -20,6 +20,7 @@ export default class Header extends Component {
     }
 
     render(){
+      
         return (
         <header className="header container">
           <h1 className="header-logo">

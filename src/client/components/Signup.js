@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SignupApi from '../logicas/SignupApi';
+import PropTypes from 'prop-types'
 
 class Signup extends Component {
     
@@ -8,12 +9,18 @@ class Signup extends Component {
         super();
         this.state = {msg:''};
     }
+
+    componentDidMount(){
+        this.context.store.subscribe(() => {
+          this.setState({msg:this.context.store.getState().notificacao});
+        });
+      }
     
     //https://avatars3.githubusercontent.com/u/39676166?s=400&v=4
     
     signup(event){
         event.preventDefault();
-        this.props.signup({login: this.login.value, senha: this.senha.value, confirma: this.confirma.value, urlPerfil: this.urlPerfil.value});        
+        this.props.signup({login: this.login.value, senha: this.senha.value, confirma: this.confirma.value, urlPerfil: this.urlPerfil.value});
     }
     
     render(){
@@ -38,9 +45,9 @@ class Signup extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {valores : state.valores}
-  };
+const mapStateToProps = store => ({
+    valores: store.valores
+  });
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -49,5 +56,9 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
+
+Signup.contextTypes = {
+    store: PropTypes.object.isRequired
+  }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

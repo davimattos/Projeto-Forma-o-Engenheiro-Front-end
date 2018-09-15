@@ -19,6 +19,5 @@ export function apaga(fotoId) {
 }
 
 export function signup (valores){
-    newValue: 'Atualizado'
     return {type: 'SIGNUP', valores}
 }

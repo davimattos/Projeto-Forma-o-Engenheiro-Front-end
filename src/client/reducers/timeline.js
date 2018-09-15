@@ -42,5 +42,9 @@ export function timeline(state=new List(),action){
       });
   }
 
+  if(action.type === 'APAGA'){  
+    return new List(fotoId);
+  }
+
   return state;
 }
